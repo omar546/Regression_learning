@@ -1,1 +1,1 @@
-simple/multiple regression models (hard-coded) in R
+simple/multiple regression models (hard-coded) in R (USER-interactive)
