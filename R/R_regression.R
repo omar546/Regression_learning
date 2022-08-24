@@ -1,5 +1,4 @@
 #================SIMPLE===========
-library("rstudioapi")
 library(matlib)
 reloadS <- function(){SIMPLE()}
 sim_or_mult=readline("[1] SIMPLE    [2] MULTIPLE      ")
