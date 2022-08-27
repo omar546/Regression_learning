@@ -502,7 +502,7 @@ if(sim_or_mult=='2'){
     
     conf_b1 <- function() {
       significance_level =as.numeric(readline("enter significance level (Alpha):   "))
-      t_c = qt(p= significance_level/2, df= n-k, lower.tail=FALSE)
+      t_c = qt(p= significance_level/2, df= n-(k+1), lower.tail=FALSE)
       upper_ <- (B_hat[2,]+((t_c)*(sqrt((MSE*as.array(diag(inv(zx_xz)))[2])))))
       lower_ <- (B_hat[2,]-((t_c)*(sqrt((MSE*as.array(diag(inv(zx_xz)))[2])))))
       cat('Range : [ ',lower_,', ',upper_,' ]')
@@ -510,7 +510,7 @@ if(sim_or_mult=='2'){
     }
     conf_b0 <- function() {
       significance_level =as.numeric(readline("enter significance level (Alpha):   "))
-      t_c = qt(p= significance_level/2, df= n-2, lower.tail=FALSE)
+      t_c = qt(p= significance_level/2, df= n-(k+1), lower.tail=FALSE)
       upper_ <- (B_hat[1,]+((t_c)*(sqrt((MSE*as.array(diag(inv(zx_xz)))[1])))))
       lower_ <- (B_hat[1,]-((t_c)*(sqrt((MSE*as.array(diag(inv(zx_xz)))[1])))))
       cat('Range : [ ',lower_,', ',upper_,' ]')
@@ -529,7 +529,7 @@ if(sim_or_mult=='2'){
         print(xnode)
         y_est_node = t(xnode)%*%B_hat
         significance_level =as.numeric(readline("enter significance level (Alpha):   "))
-        t_c = qt(p= significance_level/2, df= n-2, lower.tail=FALSE)
+        t_c = qt(p= significance_level/2, df= n-(k+1), lower.tail=FALSE)
         
         se=sqrt(MSE*(t(xnode)%*%inv(xz_trans%*%xz)%*%xnode))
         upper_ <- (y_est_node+(t_c)*se)
@@ -546,7 +546,7 @@ if(sim_or_mult=='2'){
         y_est_node = t(xnode)%*%B_hat
         
         significance_level =as.numeric(readline("enter significance level (Alpha):   "))
-        t_c2 = qt(p= significance_level/2, df= n-2, lower.tail=FALSE)
+        t_c2 = qt(p= significance_level/2, df= n-(k+1), lower.tail=FALSE)
         
         se2=sqrt(MSE*(1+(t(xnode)%*%inv(xz_trans%*%xz)%*%xnode)))
         upper_2 <- (y_est_node+(t_c2)*se2)
@@ -564,7 +564,7 @@ if(sim_or_mult=='2'){
         if(choise5 == 1){
           significance_level =as.numeric(readline("enter significance level (Alpha):   "))
           cat(ne)
-          t_c = qt(p= significance_level/2, df= n-2, lower.tail=FALSE)
+          t_c = qt(p= significance_level/2, df= n-(k+1), lower.tail=FALSE)
           t_node = (B_hat[2,])/((sqrt((MSE*as.array(diag(inv(zx_xz)))[2]))))
           if(t_node > t_c){cat(t_node,">",t_c,"   ","we reject H. B1 !=")}else{print("we accept H. B1 =")}
           hyp_t()
@@ -572,7 +572,7 @@ if(sim_or_mult=='2'){
         else{if(choise5 == 2 | 3){
           significance_level =as.numeric(readline("enter significance level (Alpha):   "))
           cat(ne)
-          t_c =qt(p= significance_level, df= n-2, lower.tail=FALSE)
+          t_c =qt(p= significance_level, df= n-(k+1), lower.tail=FALSE)
           t_node = ((B_hat[2,]-0)/(sqrt((MSE*as.array(diag(inv(zx_xz)))[2]))))
           op='>'
           if(choise5 == 2){op='<'}
@@ -597,7 +597,7 @@ if(sim_or_mult=='2'){
         if(choise6 == 1){
           significance_level =as.numeric(readline("enter significance level (Alpha):   "))
           cat(ne)
-          t_c = qt(p= significance_level/2, df= n-2, lower.tail=FALSE)
+          t_c = qt(p= significance_level/2, df= n-(k+1), lower.tail=FALSE)
           t_node = (B_hat[1,]-0)/(sqrt((MSE*as.array(diag(inv(zx_xz)))[1])))
           if(t_node > t_c){cat(t_node,">",t_c,"   ","we reject H. B0 !=")}else{print("we accept H. B0 =")}
           hyp_t()
@@ -605,7 +605,7 @@ if(sim_or_mult=='2'){
         else{if(choise6 == 2 | 3){
           significance_level =as.numeric(readline("enter significance level (Alpha):   "))
           cat(ne)
-          t_c = qt(p= significance_level, df= n-2, lower.tail=FALSE)
+          t_c = qt(p= significance_level, df= n-(k+1), lower.tail=FALSE)
           t_node = (B_hat[1,]-0)/(sqrt((MSE*as.array(diag(inv(zx_xz)))[1])))
           op='>'
           if(choise6 == 2){op='<'}
@@ -629,7 +629,7 @@ if(sim_or_mult=='2'){
         if(choise7 == 1){
           significance_level =as.numeric(readline("enter significance level (Alpha):   "))
           cat(ne)
-          t_c = qt(p= significance_level/2, df= n-2, lower.tail=FALSE)
+          t_c = qt(p= significance_level/2, df= n-(k+1), lower.tail=FALSE)
           t_node = r*(sqrt((n-(k+1))/(1-r^2)))
           if(t_node > t_c){cat(t_node,">",t_c,"   ","we reject H. rho !=")}
           else{print("we accept H.  rho =")}
@@ -639,7 +639,7 @@ if(sim_or_mult=='2'){
           if(choise7 == 2 | 3){
             significance_level =as.numeric(readline("enter significance level (Alpha):   "))
             cat(ne)
-            t_c = qt(p= significance_level, df= n-2, lower.tail=FALSE)
+            t_c = qt(p= significance_level, df= n-(k+1), lower.tail=FALSE)
             t_node = (r*(sqrt((n-(k+1))/(1-r^2))))
             op='>'
             if(choise7 == 2){op='<'}
